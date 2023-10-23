@@ -25,7 +25,7 @@ struct AddEventView: View {
     @State private var activityDate = Date()
     @State private var activityDistance = ""
     @State private var activityDescription = ""
-    @State private var activityImage: String = "defaultImage" // Assuming you have a default image
+    @State private var activityImage: String = "defaultImage"
 
     var body: some View {
         NavigationView {
@@ -34,7 +34,7 @@ struct AddEventView: View {
                     TextField("Event Name", text: $activityTitle)
                     DatePicker("Event Date", selection: $activityDate, displayedComponents: .date)
                     TextField("Description", text: $activityDescription)
-                    TextField("Image Name", text: $activityImage) // Assuming images are in the asset catalog
+                    TextField("Image Name", text: $activityImage)
                 }
 
                 Button("Add Event") {

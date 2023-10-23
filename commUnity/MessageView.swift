@@ -141,7 +141,11 @@ struct MessageView: View {
                 // Text input and send button
                 HStack {
                     TextField("Type a message...", text: $currentMessage)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.leading, 5).padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 7)
+                                .stroke(Color.gray.opacity(0.6), lineWidth: 1)
+                        )
                         .padding(.leading, 15)
 
                     Button(action: {
