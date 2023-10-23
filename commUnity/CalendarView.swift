@@ -159,7 +159,7 @@ struct CalendarView: View {
                         }
                         .padding(.vertical, 12)
                         .frame(maxWidth: .infinity)
-                        .background(Color.gray.opacity(0.6))
+                        .background(Color.gray.opacity(0.55))
                         .cornerRadius(10)
                         .padding(.horizontal)
                     }.padding(.top, 10)
