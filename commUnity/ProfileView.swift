@@ -19,6 +19,28 @@ struct Event1: Identifiable {
     var comments: Int
 }
 
+struct NotificationsOverlay: View {
+    var notifications: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            ForEach(notifications, id: \.self) { notification in
+                HStack {
+                    Image(systemName: "bell.fill")
+                        .foregroundColor(.gray)
+                    Text(notification)
+                }
+                .padding(.horizontal)
+                Divider()
+            }
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 10)
+    }
+}
+
 struct CombinedActivityAndProfile1: View {
     var activityImage: String
     var activityTitle: String
@@ -111,147 +133,161 @@ struct CombinedActivityAndProfile1: View {
 
 struct ProfileView: View {
     @State private var currentPage: String = "profile"
+    @State private var showNotifications = false
     
     @State private var events: [Event1] = [
         Event1(activityImage: "protest",
-              activityTitle: "Roseville Green Summit 2023",
-              activityDate: "OCT 15, 9AM - 5PM",
-              activityDistance: "2.4 Miles",
-              activityDescription: "Unite for change at the Green Harmony Summit: where passion meets action for a sustainable tomorrow.",
-              likes: 71,
-              comments: 21),
+               activityTitle: "Roseville Green Summit 2023",
+               activityDate: "OCT 15, 9AM - 5PM",
+               activityDistance: "2.4 Miles",
+               activityDescription: "Unite for change at the Green Harmony Summit: where passion meets action for a sustainable tomorrow.",
+               likes: 71,
+               comments: 21),
         Event1(activityImage: "read",
-              activityTitle: "Rallying For Reading Rights @ Granite Bay High School",
-              activityDate: "OCT 17, 3PM - 5PM",
-              activityDistance: "3.1 Miles",
-              activityDescription: "Join us in opposing censorship and book bans. Prominent voices will deliver speeches, sharing their insights and experiences.",
-              likes: 41,
-              comments: 11)
+               activityTitle: "Rallying For Reading Rights @ Granite Bay High School",
+               activityDate: "OCT 17, 3PM - 5PM",
+               activityDistance: "3.1 Miles",
+               activityDescription: "Join us in opposing censorship and book bans. Prominent voices will deliver speeches, sharing their insights and experiences.",
+               likes: 41,
+               comments: 11)
     ]
     
+    let sampleNotifications = [
+        "4 days until Roseville Green Summit 2023!",
+        "Time changed for Rallying for Reading Rights",
+        "New message from David Andrews"
+    ]
+    
+    
     var body: some View {
-        NavigationView{
-            VStack(spacing: 16) {
-                
-                // Navigation Bar
-                HStack {
-                    ZStack {
-                        // Background first
-                        Color(hex: "#FFFFFF")
-                            .cornerRadius(15)
-                            .frame(width: 50, height: 50)
-                        
-                    }
-                    .padding(.top,60)
-                    .padding(.bottom,10)
+        ZStack{
+            NavigationView{
+                VStack(spacing: 16) {
                     
-                    Spacer()
-                    
-                    VStack(spacing: 4) {
-                        HStack {
-                            Image("logo")
-                                .resizable()
-                                .scaledToFit()
+                    // Navigation Bar
+                    HStack {
+                        ZStack {
+                            // Background first
+                            Color(hex: "#FFFFFF")
+                                .cornerRadius(15)
                                 .frame(width: 50, height: 50)
                             
-                            Text("commUnity")
-                                .font(.system(size: 25)).bold()
-                                .foregroundColor(Color.black)
                         }
+                        .padding(.top,60)
+                        .padding(.bottom,10)
                         
-                    }.padding(.top, 60).padding(.bottom, 5)
-                    
-                    Spacer()
-                    
-                    ZStack {
-                        // Background first
-                        Color(hex: "#87C381")
-                            .cornerRadius(15)
-                            .frame(width: 50, height: 50) // Adjust to desired size
+                        Spacer()
                         
-                        // Then the Image
-                        Image(systemName: "bell")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color.white)
-                    }
-                    .padding(.top,50)
-                    .padding(.trailing,10)
-                }
-                .padding(.horizontal)
-                
-                ScrollView {
-                    VStack(spacing: 16) {
-                        Image("header")
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                            .padding(.horizontal,4)
-                        
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Image("pfp_picnic")
+                        VStack(spacing: 4) {
+                            HStack {
+                                Image("logo")
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 95, height: 95)
-                                    .clipShape(Circle())
-                                    .background(Circle().stroke(Color.white, lineWidth: 12))
-                                    .padding(.top, -20)
-                                    .padding(.horizontal)
-                                    .background(Circle().stroke(Color.white, lineWidth: 12))
-                                    .padding(.top, -40)
-                                    .padding(.horizontal)
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
                                 
-                                Text("Sarah Smith")
-                                    .font(.system(size: 23))
-                                    .bold()
-                                    .padding(.horizontal,25)
-                                    .padding(.top, 10)
-                                
-                                Text("🌱 Championing eco-initiatives | Organizer of Green Harmony Summit | Building bridges for a sustainable future 🌍")
-                                    .multilineTextAlignment(.leading)
-                                    .font(.system(size: 16))
-                                    .padding(.horizontal, 25)
-                                    .padding(.top,1)
+                                Text("commUnity")
+                                    .font(.system(size: 25)).bold()
+                                    .foregroundColor(Color.black)
                             }
                             
-                            Spacer()
-                        }
+                        }.padding(.top, 60).padding(.bottom, 5)
                         
-                        Divider()
-                            .padding(.vertical)
+                        Spacer()
                         
-                        Text("My Activity")
-                            .font(.system(size: 25))
-                            .bold()
-                            .multilineTextAlignment(.leading)
-                            .padding(.bottom, 8)
-                        
-                        VStack(alignment: .leading, spacing: 16) {
-                            ForEach(events) { event in
-                                VStack {
-                                    CombinedActivityAndProfile1(
-                                        activityImage: event.activityImage,
-                                        activityTitle: event.activityTitle,
-                                        activityDate: event.activityDate,
-                                        activityDistance: event.activityDistance,
-                                        activityDescription: event.activityDescription,
-                                        profileImage: "pfp_picnic",
-                                        profileUserName: "Sarah Smith",
-                                        profileLikes: event.likes,
-                                        profileComments: event.comments
-                                    )
-                                    .padding()
+                        ZStack {
+                            // Background first
+                            Color(hex: "#87C381")
+                                .cornerRadius(15)
+                                .frame(width: 50, height: 50)
+
+                            // Then the Image
+                            Image(systemName: "bell")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(Color.white).padding(15)
+                                .onTapGesture {
+                                    showNotifications.toggle()
                                 }
-                                .background(Color(hex: "#EAF2F4"))
+                        }
+
+                        .padding(.top, 50)
+                        .padding(.trailing, 10)
+                        
+                    }
+                    .padding(.horizontal)
+                    
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            Image("header")
+                                .resizable()
+                                .scaledToFit()
                                 .cornerRadius(10)
-                                .padding(.horizontal)
+                                .padding(.horizontal,4)
+                            
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Image("pfp_picnic")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 95, height: 95)
+                                        .clipShape(Circle())
+                                        .background(Circle().stroke(Color.white, lineWidth: 12))
+                                        .padding(.top, -20)
+                                        .padding(.horizontal)
+                                        .background(Circle().stroke(Color.white, lineWidth: 12))
+                                        .padding(.top, -40)
+                                        .padding(.horizontal)
+                                    
+                                    Text("Sarah Smith")
+                                        .font(.system(size: 23))
+                                        .bold()
+                                        .padding(.horizontal,25)
+                                        .padding(.top, 10)
+                                    
+                                    Text("🌱 Championing eco-initiatives | Organizer of Green Harmony Summit | Building bridges for a sustainable future 🌍")
+                                        .multilineTextAlignment(.leading)
+                                        .font(.system(size: 16))
+                                        .padding(.horizontal, 25)
+                                        .padding(.top,1)
+                                }
+                                
+                                Spacer()
                             }
-                            .padding(.bottom, 30)
+                            
+                            Divider()
+                                .padding(.vertical)
+                            
+                            Text("My Activity")
+                                .font(.system(size: 25))
+                                .bold()
+                                .multilineTextAlignment(.leading)
+                                .padding(.bottom, 8)
+                            
+                            VStack(alignment: .leading, spacing: 16) {
+                                ForEach(events) { event in
+                                    VStack {
+                                        CombinedActivityAndProfile1(
+                                            activityImage: event.activityImage,
+                                            activityTitle: event.activityTitle,
+                                            activityDate: event.activityDate,
+                                            activityDistance: event.activityDistance,
+                                            activityDescription: event.activityDescription,
+                                            profileImage: "pfp_picnic",
+                                            profileUserName: "Sarah Smith",
+                                            profileLikes: event.likes,
+                                            profileComments: event.comments
+                                        )
+                                        .padding()
+                                    }
+                                    .background(Color(hex: "#EAF2F4"))
+                                    .cornerRadius(10)
+                                    .padding(.horizontal)
+                                }
+                                .padding(.bottom, 30)
+                            }
                         }
                     }
-                }
                     // Bottom Navigation Bar
                     HStack {
                         NavigationLink(destination: CalendarView().navigationBarBackButtonHidden(true).onAppear {
@@ -328,8 +364,8 @@ struct ProfileView: View {
                                 .foregroundColor(.white)
                                 .padding(12).background( Color(hex: "#87C381").opacity(0.6))
                                 .clipShape(Circle())
-                                .padding(.trailing) // padding on the side
-                        } // padding on the side
+                                .padding(.trailing)
+                        }
                     }
                     
                     .padding()
@@ -341,16 +377,30 @@ struct ProfileView: View {
                 .background(Color.white)
                 .edgesIgnoringSafeArea(.all)
             }
+            if showNotifications {
+                VStack {
+                    Spacer(minLength: 0)
+                    HStack {
+                        Spacer()
+                        NotificationsOverlay(notifications: sampleNotifications)
+                            .padding(.trailing, 100).padding(.top, 70)
+                    }
+                }
+            }
         }
-
-        
-    struct ProfileView_Previews: PreviewProvider {
-        static var previews: some View {
-            ProfileView()
+        .onTapGesture {
+            if showNotifications {
+                showNotifications = false
             }
         }
     }
-    
+}
+
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView()
+    }
+}
 
 
 
