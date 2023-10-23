@@ -110,7 +110,7 @@ struct NewsView: View {
                             .frame(width: 30, height: 30)
                             .foregroundColor(Color.white)
                     }
-                    .padding(.top, 60)
+                    .padding(.top, 50)
                     .padding(.trailing, 10)
                 }
                 .padding(.horizontal)

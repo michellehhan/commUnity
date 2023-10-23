@@ -7,8 +7,88 @@
 
 import SwiftUI
 
+struct Event: Identifiable {
+    var id = UUID()
+    var activityImage: String
+    var activityTitle: String
+    var activityDate: String
+    var activityDistance: String
+    var activityDescription: String
+    var likes: Int
+    var comments: Int
+}
+
+struct AddEventView: View {
+    @Binding var isPresented: Bool
+    @Binding var events: [Event]
+    @State private var activityTitle = ""
+    @State private var activityDate = Date()
+    @State private var activityDistance = ""
+    @State private var activityDescription = ""
+    @State private var activityImage: String = "defaultImage" // Assuming you have a default image
+
+    var body: some View {
+        NavigationView {
+            Form {
+                Section(header: Text("Event Details")) {
+                    TextField("Event Name", text: $activityTitle)
+                    DatePicker("Event Date", selection: $activityDate, displayedComponents: .date)
+                    TextField("Description", text: $activityDescription)
+                    TextField("Image Name", text: $activityImage) // Assuming images are in the asset catalog
+                }
+
+                Button("Add Event") {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MMM d, ha - "
+                    let startDate = dateFormatter.string(from: activityDate)
+                    dateFormatter.dateFormat = "ha"
+                    let endDate = dateFormatter.string(from: activityDate.addingTimeInterval(8 * 3600)) // Assuming an 8-hour event for this example
+                    let formattedDate = "\(startDate)\(endDate)"
+                    
+                    let event = Event(
+                        activityImage: activityImage,
+                        activityTitle: activityTitle,
+                        activityDate: formattedDate,
+                        activityDistance: "1.7 Miles",
+                        activityDescription: activityDescription,
+                        likes: 0,
+                        comments: 0
+                    )
+                    events.insert(event, at: 0) // Inserting the event at the top of the list
+                    isPresented = false
+                    // Close the form
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+
+            }
+            .navigationBarTitle("Add Event", displayMode: .inline)
+        }
+    }
+}
+
+
+
 struct CalendarView: View {
     @State private var currentPage: String = "calendar"
+    @State private var showAddEvent = false
+    @State private var events: [Event] = [
+        Event(activityImage: "protest",
+              activityTitle: "Roseville Green Summit 2023",
+              activityDate: "OCT 15, 9AM - 5PM",
+              activityDistance: "2.4 Miles",
+              activityDescription: "Unite for change at the Green Harmony Summit: where passion meets action for a sustainable tomorrow.",
+              likes: 71,
+              comments: 21),
+        Event(activityImage: "read",
+              activityTitle: "Rallying For Reading Rights @ Granite Bay High School",
+              activityDate: "OCT 17, 3PM - 5PM",
+              activityDistance: "3.1 Miles",
+              activityDescription: "Join us in opposing censorship and book bans. Prominent voices will deliver speeches, sharing their insights and experiences.",
+              likes: 41,
+              comments: 11)
+    ]
+
+
     var body: some View {
         NavigationView{
             VStack(spacing: 15) {
@@ -56,7 +136,7 @@ struct CalendarView: View {
                             .frame(width: 30, height: 30)
                             .foregroundColor(Color.white)
                     }
-                    .padding(.top,60)
+                    .padding(.top,50)
                     .padding(.trailing,10)
                 }
                 .padding(.horizontal)
@@ -66,36 +146,42 @@ struct CalendarView: View {
                     Text("Granite Bay, CA")}.font(.system(size: 16)).foregroundColor(Color.black).padding(9)
                     .background(Color(hex: "#CBF1F8"))
                     .cornerRadius(10).padding(.bottom, 8)
-                                
-                
-                ScrollView {
-                        
-                    CombinedActivityAndProfile(
-                        activityImage: "protest",
-                        activityTitle: "Roseville Green Summit 2023",
-                        activityDate: "OCT 15, 9AM - 5PM",
-                        activityDistance: "2.4 MILES",
-                        activityDescription: "Unite for change at the Green Harmony Summit: where passion meets action for a sustainable tomorrow.",
-                        profileImage: "pfp_picnic",
-                        profileUserName: "Sarah Smith",
-                        profileLikes: 12,
-                        profileComments: 7
-                    )
-                    
-                    CombinedActivityAndProfile(
-                        activityImage: "read",
-                        activityTitle: "Rallying For Reading Rights @ Granite Bay High School",
-                        activityDate: "OCT 17, 3PM - 5PM",
-                        activityDistance: "4.3 MILES",
-                        activityDescription: "Join us in opposing censorship and book bans. Prominent voices will deliver speeches, sharing their insights and experiences.",
-                        profileImage: "pfp_picnic",
-                        profileUserName: "Sarah Smith",
-                        profileLikes: 19,
-                        profileComments: 11
-                    )
 
+                ScrollView {
+                    Button(action: {
+                        showAddEvent = true
+                    }) {
+                        HStack {
+                            Image(systemName: "plus")
+                                .foregroundColor(.white)
+                            Text("Add Event").bold()
+                                .foregroundColor(.white).font(.system(size: 18))
+                        }
+                        .padding(.vertical, 12)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.gray.opacity(0.6))
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                    }.padding(.top, 10)
+                    .sheet(isPresented: $showAddEvent) {
+                        AddEventView(isPresented: $showAddEvent, events: $events)
+                    }
                     
+                    ForEach(events) { event in
+                        CombinedActivityAndProfile(
+                            activityImage: event.activityImage,
+                            activityTitle: event.activityTitle,
+                            activityDate: event.activityDate,
+                            activityDistance: event.activityDistance,
+                            activityDescription: event.activityDescription,
+                            profileImage: "pfp_picnic", // Assuming a default profile image
+                            profileUserName: "Sarah Smith",
+                            profileLikes: event.likes,
+                            profileComments: event.comments
+                        )
+                    }
                 }
+
                 // Bottom Navigation Bar
                 HStack {
                     if currentPage != "calendar" {
@@ -269,8 +355,8 @@ struct CalendarView: View {
                         Image(systemName: "hand.thumbsup")
                             .foregroundColor(.black)
                         Text("\(likes)")
-                            .font(.system(size: 17))
-                    }.padding(.horizontal,7)
+                            .font(.system(size: 14))
+                    }.padding(.horizontal,4)
                     
                     // Comments
                     HStack(spacing: 5) {
@@ -324,6 +410,25 @@ struct CalendarView: View {
         var profileComments: Int
 
         @State private var showingActionSheet = false
+        @State private var liked: Bool = false
+        @State private var currentLikes: Int?
+        
+        private var unwrappedLikes: Int {
+            currentLikes ?? profileLikes
+        }
+        
+        init(activityImage: String, activityTitle: String, activityDate: String, activityDistance: String, activityDescription: String, profileImage: String, profileUserName: String, profileLikes: Int, profileComments: Int) {
+            self.activityImage = activityImage
+            self.activityTitle = activityTitle
+            self.activityDate = activityDate
+            self.activityDistance = activityDistance
+            self.activityDescription = activityDescription
+            self.profileImage = profileImage
+            self.profileUserName = profileUserName
+            self.profileLikes = profileLikes
+            self.profileComments = profileComments
+            _currentLikes = State(initialValue: profileLikes)
+        }
 
         var body: some View {
             VStack(spacing: 0) { // no spacing to ensure continuous background
@@ -351,20 +456,30 @@ struct CalendarView: View {
                         Spacer()
                         
                         // Likes
-                        HStack(spacing: 5) {
-                            Image(systemName: "hand.thumbsup")
-                                .foregroundColor(.black)
-                            Text("\(profileLikes)")
-                                .font(.system(size: 17))
-                        }.padding(.trailing,3)
+                        Button(action: {
+                            liked.toggle()
+                            if liked {
+                                currentLikes? += 1
+                            } else {
+                                currentLikes? -= 1
+                            }
+                        }) {
+                            HStack(spacing: 5) {
+                                Image(systemName: liked ? "hand.thumbsup.fill" : "hand.thumbsup")
+                                    .foregroundColor(liked ? Color.blue : Color.black)
+                                Text("\(unwrappedLikes)")
+                                    .font(.system(size: 16)).foregroundColor(liked ? Color.blue : Color.black)
+                            }
+                        }
+                        .padding(.trailing,2)
                         
                         // Comments
                         HStack(spacing: 5) {
                             Image(systemName: "text.bubble")
                                 .foregroundColor(.black)
                             Text("\(profileComments)")
-                                .font(.system(size: 17))
-                        }.padding(.horizontal,3)
+                                .font(.system(size: 16))
+                        }.padding(.horizontal,2)
                         
                         // More Options
                         Button(action: {
