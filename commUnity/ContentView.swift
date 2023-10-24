@@ -66,8 +66,8 @@ struct CommunityProfileView: View {
                         }
                     }
                 case .news:
-                    ForEach(Array(newsArticles.prefix(3).enumerated()), id: \.element.id) { index, article in
-                        if index < 2 {
+                    ForEach(Array(newsArticles.prefix(4).enumerated()), id: \.element.id) { index, article in
+                        if index < 3 {
                             if let thumbnailUrl = article.fields?.thumbnail {
                                 AsyncImage(url: thumbnailUrl) { image in
                                     image
@@ -87,7 +87,9 @@ struct CommunityProfileView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(height: 150)
-                                .cornerRadius(8).opacity(0.75)}
+                                    .cornerRadius(8)
+                                    .opacity(0.75)
+                            }
                         }
                     }
 
