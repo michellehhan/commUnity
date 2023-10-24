@@ -254,7 +254,7 @@ struct CommunityProfileView: View {
                                 .padding(12).background( Color(hex: "#87C381").opacity(0.6))
                                 .clipShape(Circle())
                         }
-                        .padding(.trailing) // padding on the side
+
                     } else {
                         Image(systemName: "house")
                             .resizable()
@@ -263,7 +263,6 @@ struct CommunityProfileView: View {
                             .foregroundColor(.white)
                             .padding(12).background( Color(hex: "#87C381").opacity(0.6))
                             .clipShape(Circle())
-                        .padding(.trailing) // padding on the side
                     }
                     
                     Spacer()

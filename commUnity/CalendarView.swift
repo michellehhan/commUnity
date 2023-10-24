@@ -25,7 +25,7 @@ struct AddEventView: View {
     @State private var activityDate = Date()
     @State private var activityDistance = ""
     @State private var activityDescription = ""
-    @State private var activityImage: String = "defaultImage"
+    @State private var activityImage: String = "unausa.jpg"
 
     var body: some View {
         NavigationView {
@@ -42,7 +42,7 @@ struct AddEventView: View {
                     dateFormatter.dateFormat = "MMM d, ha - "
                     let startDate = dateFormatter.string(from: activityDate)
                     dateFormatter.dateFormat = "ha"
-                    let endDate = dateFormatter.string(from: activityDate.addingTimeInterval(8 * 3600)) // Assuming an 8-hour event for this example
+                    let endDate = dateFormatter.string(from: activityDate.addingTimeInterval(8 * 3600))
                     let formattedDate = "\(startDate)\(endDate)"
                     
                     let event = Event(

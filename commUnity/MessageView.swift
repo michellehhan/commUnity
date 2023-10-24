@@ -13,7 +13,6 @@ struct ChatMessage {
     let isFromCurrentUser: Bool
 }
 
-
 struct MessageView: View {
     @State private var currentPage: String = "message"
     @State private var messages: [ChatMessage] = [

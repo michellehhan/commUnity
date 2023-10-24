@@ -376,7 +376,7 @@ struct ProfileView: View {
                 }
                 .background(Color.white)
                 .edgesIgnoringSafeArea(.all)
-            }
+            }.opacity(showNotifications ? 0.4 : 1)
             if showNotifications {
                 VStack {
                     Spacer(minLength: 0)
