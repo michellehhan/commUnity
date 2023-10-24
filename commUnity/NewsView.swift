@@ -114,7 +114,7 @@ struct NewsView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
-                                .foregroundColor(Color.white).padding(15)
+                                .foregroundColor(Color.white).padding(17)
                                 .onTapGesture {
                                     showNotifications.toggle()
                                 }

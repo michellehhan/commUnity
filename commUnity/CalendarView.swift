@@ -133,7 +133,7 @@ struct CalendarView: View {
                         Image(systemName: "bell")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 30, height: 30).padding(20)
                             .foregroundColor(Color.white)
                     }
                     .padding(.top,50)

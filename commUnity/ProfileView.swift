@@ -205,7 +205,7 @@ struct ProfileView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
-                                .foregroundColor(Color.white).padding(15)
+                                .foregroundColor(Color.white).padding(20)
                                 .onTapGesture {
                                     showNotifications.toggle()
                                 }

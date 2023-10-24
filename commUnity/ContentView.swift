@@ -147,7 +147,7 @@ struct CommunityProfileView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 30, height: 30)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.white).padding(20)
                     }
                     .padding(.top,50)
                     .padding(.trailing,10)
