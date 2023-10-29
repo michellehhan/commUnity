@@ -153,8 +153,8 @@ struct ProfileView: View {
     ]
     
     let sampleNotifications = [
-        "4 days until Roseville Green Summit 2023!",
-        "Time changed for Rallying for Reading Rights",
+        "4 days until Wildfire Relief Fundraiser!",
+        "Time changed for Inflation 101 Event",
         "New message from David Andrews"
     ]
     

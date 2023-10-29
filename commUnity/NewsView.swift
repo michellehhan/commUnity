@@ -35,7 +35,7 @@ struct NewsView: View {
     @State private var showNotifications = false
     let sampleNotifications = [
         "4 days until Wildfire Relief Fundraiser!",
-        "Time changed for Inflation 101 E",
+        "Time changed for Inflation 101 Event",
         "New message from David Andrews"
     ]
     
