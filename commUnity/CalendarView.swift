@@ -40,6 +40,7 @@ struct AddEventView: View {
     // @State private var endTime: Date = Date().addingTimeInterval(3600) // Default to 1 hour later
     @State private var startTime: Date = Date.todayAt(hour: 15)
     @State private var endTime: Date = Date.todayAt(hour: 17)
+    
 
 
     var body: some View {
@@ -117,6 +118,12 @@ struct AddEventView: View {
 struct CalendarView: View {
     @State private var currentPage: String = "calendar"
     @State private var showAddEvent = false
+    @State private var showNotifications = false
+    let sampleNotifications = [
+        "4 days until Wildfire Relief Fundraiser!",
+        "Time changed for Inflation 101 Event",
+        "New message from David Andrews"
+    ]
     @State private var events: [Event] = [
         Event(activityImage: "wildfire",
               activityTitle: "Wildfire Relief Fundraiser Event",
@@ -133,107 +140,121 @@ struct CalendarView: View {
               likes: 41,
               comments: 11)
     ]
-
-
+    
+    
     var body: some View {
-        NavigationView{
-            VStack(spacing: 15) {
-                
-                // Navigation Bar
-                HStack {
-                    ZStack {
-                        // Background first
-                        Color(hex: "#FFFFFF")
-                            .cornerRadius(15)
-                            .frame(width: 50, height: 50)
-                        
-                    }
-                    .padding(.top,60)
-                    .padding(.bottom,10)
+        ZStack{
+            NavigationView{
+                VStack(spacing: 15) {
                     
-                    Spacer()
-                    
-                    VStack(spacing: 4) {
-                        HStack {
-                            Image("logo")
-                                .resizable()
-                                .scaledToFit()
+                    // Navigation Bar
+                    HStack {
+                        ZStack {
+                            // Background first
+                            Color(hex: "#FFFFFF")
+                                .cornerRadius(15)
                                 .frame(width: 50, height: 50)
                             
-                            Text("commUnity")
-                                .font(.system(size: 25)).bold()
-                                .foregroundColor(Color.black)
                         }
+                        .padding(.top,60)
+                        .padding(.bottom,10)
                         
-                    }.padding(.top, 60).padding(.bottom, 5)
-                    
-                    Spacer()
-                    
-                    ZStack {
-                        // Background first
-                        Color(hex: "#87C381")
-                            .cornerRadius(15)
-                            .frame(width: 50, height: 50) // Adjust to desired size
+                        Spacer()
                         
-                        // Then the Image
-                        Image(systemName: "bell")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30).padding(20)
-                            .foregroundColor(Color.white)
-                    }
-                    .padding(.top,50)
-                    .padding(.trailing,10)
-                }
-                .padding(.horizontal)
-                HStack{
-                    Image(systemName: "location")
-                        .foregroundColor(.black)
-                    Text("Granite Bay, CA")}.font(.system(size: 16)).foregroundColor(Color.black).padding(9)
-                    .background(Color(hex: "#CBF1F8"))
-                    .cornerRadius(10).padding(.bottom, 8)
-
-                ScrollView {
-                    Button(action: {
-                        showAddEvent = true
-                    }) {
-                        HStack {
-                            Image(systemName: "plus")
-                                .foregroundColor(.white)
-                            Text("Add Event").bold()
-                                .foregroundColor(.white).font(.system(size: 18))
+                        VStack(spacing: 4) {
+                            HStack {
+                                Image("logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                                
+                                Text("commUnity")
+                                    .font(.system(size: 25)).bold()
+                                    .foregroundColor(Color.black)
+                            }
+                            
+                        }.padding(.top, 60).padding(.bottom, 5)
+                        
+                        Spacer()
+                        
+                        ZStack {
+                            // Background first
+                            Color(hex: "#87C381")
+                                .cornerRadius(15)
+                                .frame(width: 50, height: 50)
+                            
+                            // Then the Image
+                            Image(systemName: "bell")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(Color.white).padding(17)
+                                .onTapGesture {
+                                    showNotifications.toggle()
+                                }
                         }
-                        .padding(.vertical, 12)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.gray.opacity(0.55))
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                    }.padding(.top, 10)
-                    .sheet(isPresented: $showAddEvent) {
-                        AddEventView(isPresented: $showAddEvent, events: $events)
+                        .padding(.top,50)
+                        .padding(.trailing,15)
                     }
+                    .padding(.horizontal)
+                    HStack{
+                        Image(systemName: "location")
+                            .foregroundColor(.black)
+                        Text("Granite Bay, CA")}.font(.system(size: 16)).foregroundColor(Color.black).padding(9)
+                        .background(Color(hex: "#CBF1F8"))
+                        .cornerRadius(10).padding(.bottom, 8)
                     
-                    ForEach(events) { event in
-                        CombinedActivityAndProfile(
-                            activityImage: event.activityImage,
-                            activityTitle: event.activityTitle,
-                            activityDate: event.activityDate,
-                            activityDistance: event.activityDistance,
-                            activityDescription: event.activityDescription,
-                            profileImage: "pfp_picnic", // Assuming a default profile image
-                            profileUserName: "Sarah Smith",
-                            profileLikes: event.likes,
-                            profileComments: event.comments
-                        )
-                    }
-                }
-
-                // Bottom Navigation Bar
-                HStack {
-                    if currentPage != "calendar" {
-                        NavigationLink(destination: ProfileView().onAppear {
-                            self.currentPage = "calendar"
+                    ScrollView {
+                        Button(action: {
+                            showAddEvent = true
                         }) {
+                            HStack {
+                                Image(systemName: "plus")
+                                    .foregroundColor(.white)
+                                Text("Add Event").bold()
+                                    .foregroundColor(.white).font(.system(size: 18))
+                            }
+                            .padding(.vertical, 12)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.gray.opacity(0.55))
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+                        }.padding(.top, 10)
+                            .sheet(isPresented: $showAddEvent) {
+                                AddEventView(isPresented: $showAddEvent, events: $events)
+                            }
+                        
+                        ForEach(events) { event in
+                            CombinedActivityAndProfile(
+                                activityImage: event.activityImage,
+                                activityTitle: event.activityTitle,
+                                activityDate: event.activityDate,
+                                activityDistance: event.activityDistance,
+                                activityDescription: event.activityDescription,
+                                profileImage: "pfp_picnic", // Assuming a default profile image
+                                profileUserName: "Sarah Smith",
+                                profileLikes: event.likes,
+                                profileComments: event.comments
+                            )
+                        }
+                    }
+                    
+                    // Bottom Navigation Bar
+                    HStack {
+                        if currentPage != "calendar" {
+                            NavigationLink(destination: ProfileView().onAppear {
+                                self.currentPage = "calendar"
+                            }) {
+                                Image(systemName: "calendar")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.white)
+                                    .padding(12).background( Color(hex: "#87C381").opacity(0.6))
+                                    .clipShape(Circle())
+                            }
+                            .padding(.trailing) // padding on the side
+                        } else {
                             Image(systemName: "calendar")
                                 .resizable()
                                 .scaledToFit()
@@ -241,82 +262,86 @@ struct CalendarView: View {
                                 .foregroundColor(.white)
                                 .padding(12).background( Color(hex: "#87C381").opacity(0.6))
                                 .clipShape(Circle())
+                                .padding(.leading) // padding on the side
+                        } // padding on the side
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: MessageView().navigationBarBackButtonHidden(true).onAppear {
+                            self.currentPage = "message"
+                        }) {
+                            Image(systemName: "message")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                                .padding()
+                        }
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: CommunityProfileView().navigationBarBackButtonHidden(true).onAppear {
+                            self.currentPage = "communityProfile"
+                        }) {
+                            Image(systemName: "house")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                                .padding()
+                        }
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination:  NewsView().navigationBarBackButtonHidden(true).onAppear {
+                            self.currentPage = "news"
+                        }) {
+                            Image(systemName: "newspaper")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                                .padding()
+                        }
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: ProfileView().navigationBarBackButtonHidden(true).onAppear {
+                            self.currentPage = "profile"
+                        }) {
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                                .padding()
                         }
                         .padding(.trailing) // padding on the side
-                    } else {
-                        Image(systemName: "calendar")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
-                            .padding(12).background( Color(hex: "#87C381").opacity(0.6))
-                            .clipShape(Circle())
-                        .padding(.leading) // padding on the side
-                    } // padding on the side
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: MessageView().navigationBarBackButtonHidden(true).onAppear {
-                        self.currentPage = "message"
-                    }) {
-                        Image(systemName: "message")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                            .padding()
                     }
                     
-                    Spacer()
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 0)
                     
-                    NavigationLink(destination: CommunityProfileView().navigationBarBackButtonHidden(true).onAppear {
-                        self.currentPage = "communityProfile"
-                    }) {
-                        Image(systemName: "house")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                            .padding()
-                    }
                     
-                    Spacer()
-                    
-                    NavigationLink(destination:  NewsView().navigationBarBackButtonHidden(true).onAppear {
-                        self.currentPage = "news"
-                    }) {
-                        Image(systemName: "newspaper")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                            .padding()
-                    }
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: ProfileView().navigationBarBackButtonHidden(true).onAppear {
-                        self.currentPage = "profile"
-                    }) {
-                        Image(systemName: "person.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                            .padding()
-                    }
-                    .padding(.trailing) // padding on the side
-                }
+                }.opacity(showNotifications ? 0.4 : 1)
                 
-                .padding()
-                .background(Color.gray.opacity(0.1))
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 0)
-                
-                
+                    .background(Color.white)
+                    .edgesIgnoringSafeArea(.all)
+            }.navigationBarBackButtonHidden(true)
+            if showNotifications {
+                VStack {
+                    Spacer(minLength: 0)
+                    HStack {
+                        Spacer()
+                        NotificationsOverlay(notifications: sampleNotifications)
+                            .padding(.trailing, 100).padding(.top, 70)
+                    } // End of notifications HStack
+                } // End of notifications VStack
             }
-            .background(Color.white)
-            .edgesIgnoringSafeArea(.all)
-        }.navigationBarBackButtonHidden(true)
+            
+        }
+        
     }
     
     struct ActivityRow: View {
@@ -443,7 +468,7 @@ struct CalendarView: View {
             }
         }
     }
-
+    
     struct CombinedActivityAndProfile: View {
         var activityImage: String
         var activityTitle: String
@@ -454,7 +479,7 @@ struct CalendarView: View {
         var profileUserName: String
         var profileLikes: Int
         var profileComments: Int
-
+        
         @State private var showingActionSheet = false
         @State private var liked: Bool = false
         @State private var currentLikes: Int?
@@ -475,7 +500,7 @@ struct CalendarView: View {
             self.profileComments = profileComments
             _currentLikes = State(initialValue: profileLikes)
         }
-
+        
         var body: some View {
             VStack(spacing: 0) { // no spacing to ensure continuous background
                 VStack {
@@ -552,14 +577,14 @@ struct CalendarView: View {
             .padding() // This adds padding around the background color
         }
     }
-
+}
     
     struct CalendarView_Previews: PreviewProvider {
         static var previews: some View {
             CalendarView()
         }
     }
-}
+
 
 
 
