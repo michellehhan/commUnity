@@ -136,18 +136,18 @@ struct ProfileView: View {
     @State private var showNotifications = false
     
     @State private var events: [Event1] = [
-        Event1(activityImage: "protest",
-               activityTitle: "Roseville Green Summit 2023",
-               activityDate: "OCT 15, 9AM - 5PM",
+        Event1(activityImage: "wildfire",
+               activityTitle: "Wildfire Relief Fundraiser Event",
+               activityDate: "NOV 4, 9AM - 12PM",
                activityDistance: "2.4 Miles",
-               activityDescription: "Unite for change at the Green Harmony Summit: where passion meets action for a sustainable tomorrow.",
+               activityDescription: "Engage in workshops, learn from fire experts, and donate to our fundraiser. Every contribution supports community education, wildfire initiatives, and aids affected families.",
                likes: 71,
                comments: 21),
-        Event1(activityImage: "read",
-               activityTitle: "Rallying For Reading Rights @ Granite Bay High School",
-               activityDate: "OCT 17, 3PM - 5PM",
+        Event1(activityImage: "inflation",
+               activityTitle: "Inflation 101: Empowering Our Community",
+               activityDate: "NOV 12, 3PM - 5PM",
                activityDistance: "3.1 Miles",
-               activityDescription: "Join us in opposing censorship and book bans. Prominent voices will deliver speeches, sharing their insights and experiences.",
+               activityDescription: "Join workshops & expert-led sessions tailored to help our community navigate inflation challenges. Your involvement strengthens community financial literacy, ensuring resilience in any economy!",
                likes: 41,
                comments: 11)
     ]
@@ -245,7 +245,7 @@ struct ProfileView: View {
                                         .padding(.horizontal,25)
                                         .padding(.top, 10)
                                     
-                                    Text("🌱 Championing eco-initiatives | Organizer of Green Harmony Summit | Building bridges for a sustainable future 🌍")
+                                    Text("🔥 Wildfire relief advocate & community builder | Empowering through education 📚 | United for resilience 🌲✨")
                                         .multilineTextAlignment(.leading)
                                         .font(.system(size: 16))
                                         .padding(.horizontal, 25)

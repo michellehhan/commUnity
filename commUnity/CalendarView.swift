@@ -18,6 +18,16 @@ struct Event: Identifiable {
     var comments: Int
 }
 
+extension Date {
+    static func todayAt(hour: Int, minute: Int = 0) -> Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year, .month, .day], from: Date())
+        components.hour = hour
+        components.minute = minute
+        return calendar.date(from: components) ?? Date()
+    }
+}
+
 struct AddEventView: View {
     @Binding var isPresented: Bool
     @Binding var events: [Event]
@@ -25,25 +35,57 @@ struct AddEventView: View {
     @State private var activityDate = Date()
     @State private var activityDistance = ""
     @State private var activityDescription = ""
-    @State private var activityImage: String = "unausa.jpg"
+    @State private var activityImage: String = "un-event.jpg"
+    // @State private var startTime: Date = Date()
+    // @State private var endTime: Date = Date().addingTimeInterval(3600) // Default to 1 hour later
+    @State private var startTime: Date = Date.todayAt(hour: 15)
+    @State private var endTime: Date = Date.todayAt(hour: 17)
+
 
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Event Details")) {
                     TextField("Event Name", text: $activityTitle)
-                    DatePicker("Event Date", selection: $activityDate, displayedComponents: .date)
+                    DatePicker("Select Date", selection: $activityDate, displayedComponents: .date)
+                        .onChange(of: activityDate) { newValue in
+                            let calendar = Calendar.current
+                            let components = calendar.dateComponents([.year, .month, .day], from: newValue)
+                            
+                            startTime = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: components.date!) ?? Date()
+                            endTime = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: components.date!) ?? Date()
+                        }
+
+                    HStack {
+                        Text("Start Time")        
+                        
+                        DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(CompactDatePickerStyle())
+                            .labelsHidden()
+                        
+                        Spacer()
+                        
+                        Text("End Time")
+
+                        
+                        DatePicker("", selection: $endTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(CompactDatePickerStyle())
+                            .labelsHidden()
+                           
+                    }
+
+
                     TextField("Description", text: $activityDescription)
                     TextField("Image Name", text: $activityImage)
                 }
 
                 Button("Add Event") {
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "MMM d, ha - "
-                    let startDate = dateFormatter.string(from: activityDate)
+                    dateFormatter.dateFormat = "MMM d, ha"
+                    let formattedStartTime = dateFormatter.string(from: startTime)
                     dateFormatter.dateFormat = "ha"
-                    let endDate = dateFormatter.string(from: activityDate.addingTimeInterval(8 * 3600))
-                    let formattedDate = "\(startDate)\(endDate)"
+                    let formattedEndTime = dateFormatter.string(from: endTime)
+                    let formattedDate = "\(formattedStartTime) - \(formattedEndTime)"
                     
                     let event = Event(
                         activityImage: activityImage,
@@ -60,6 +102,10 @@ struct AddEventView: View {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
 
+
+
+
+
             }
             .navigationBarTitle("Add Event", displayMode: .inline)
         }
@@ -74,14 +120,14 @@ struct CalendarView: View {
     @State private var events: [Event] = [
         Event(activityImage: "wildfire",
               activityTitle: "Wildfire Relief Fundraiser Event",
-              activityDate: "OCT 15, 9AM - 5PM",
+              activityDate: "NOV 4, 9AM - 12PM",
               activityDistance: "2.4 Miles",
               activityDescription: "Engage in workshops, learn from fire experts, and donate to our fundraiser. Every contribution supports community education, wildfire initiatives, and aids affected families.",
               likes: 71,
               comments: 21),
         Event(activityImage: "inflation",
               activityTitle: "Inflation 101: Empowering Our Community",
-              activityDate: "OCT 17, 3PM - 7PM",
+              activityDate: "NOV 12, 3PM - 5PM",
               activityDistance: "3.1 Miles",
               activityDescription: "Join workshops & expert-led sessions tailored to help our community navigate inflation challenges. Your involvement strengthens community financial literacy, ensuring resilience in any economy!",
               likes: 41,
