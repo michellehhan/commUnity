@@ -34,8 +34,8 @@ struct NewsView: View {
     
     @State private var showNotifications = false
     let sampleNotifications = [
-        "4 days until Roseville Green Summit 2023!",
-        "Time changed for Rallying for Reading Rights",
+        "4 days until Wildfire Relief Fundraiser!",
+        "Time changed for Inflation 101 E",
         "New message from David Andrews"
     ]
     
@@ -159,22 +159,22 @@ struct NewsView: View {
                                 if let imageUrl = article.fields?.thumbnail, let imageData = try? Data(contentsOf: imageUrl), let uiImage = UIImage(data: imageData) {
                                     Image(uiImage: uiImage)
                                         .resizable().scaledToFit()
-                                        .frame(width: 120)
-                                        .cornerRadius(8)
+                                        .frame(width: 130)
+                                        .cornerRadius(7)
                                 }
                                 
                                 // Headline and description section
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text(article.webTitle)
-                                        .font(.system(size:16)).bold()
+                                        .font(.system(size:15)).bold()
                                     if let description = article.fields?.trailText {
                                         Text(description.prefix(60) + "...")
-                                            .font(.system(size: 14))
+                                            .font(.system(size: 13))
                                             .foregroundColor(.gray)
                                     }
                                     Link(destination: article.webUrl) {
                                         Text("Read more...")
-                                            .font(.subheadline)
+                                            .font(.system(size: 14))
                                             .foregroundColor(.blue)
                                     }
                                 }
