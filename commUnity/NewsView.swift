@@ -158,8 +158,8 @@ struct NewsView: View {
                                 // Image section
                                 if let imageUrl = article.fields?.thumbnail, let imageData = try? Data(contentsOf: imageUrl), let uiImage = UIImage(data: imageData) {
                                     Image(uiImage: uiImage)
-                                        .resizable().scaledToFit()
-                                        .frame(width: 130)
+                                        .resizable()
+                                        .frame(width: 130, height: 88)
                                         .cornerRadius(7)
                                 }
                                 
