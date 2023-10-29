@@ -11,7 +11,7 @@ import SwiftUI
 struct commUnityApp: App {
     var body: some Scene {
         WindowGroup {
-            CommunityProfileView()
+            WelcomeScreenView()
         }
     }
 }

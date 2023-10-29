@@ -25,9 +25,12 @@ struct WelcomeScreenView: View {
                 Color(hex: "FFFFFF").edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
-                    Image("logo")
+                    Image("logo").resizable()
+                        .scaledToFit()
+                        .frame(width: 250, height: 250)
                     Spacer()
-                    
+                    Text("WELCOME TO").font(.system(size: 21)).fontWeight(.semibold).padding(.bottom, 0.5)
+                    Text("commUnity").font(.system(size: 55)).fontWeight(.bold).padding(.bottom, 90)
                     NavigationLink(
                         destination: SignInScreenView().navigationBarHidden(true),
                         label: {
@@ -35,11 +38,11 @@ struct WelcomeScreenView: View {
                         })
                     
                     HStack {
-                        Text("New around here? ")
+                        Text("Already have an account? ")
                         NavigationLink(
                             destination: SignInScreenView().navigationBarHidden(true),
                             label: {
-                                Text("Sign Up").bold()
+                                Text("Sign In").bold()
                                     .foregroundColor(Color(hex: "#87C381"))
                             })
                     }.padding(.top, 25)

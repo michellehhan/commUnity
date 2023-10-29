@@ -45,7 +45,7 @@ struct CommunityProfileView: View {
 
     func horizontalImageGallery(for type: GalleryType) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
+            HStack(spacing: 20) {
                 switch type {
                 case .events:
                     ForEach(0..<4, id: \.self) { index in
@@ -96,7 +96,7 @@ struct CommunityProfileView: View {
 
                 }
             }
-            .padding(.horizontal)
+            .padding(.leading, 4)
         }
     }
 
