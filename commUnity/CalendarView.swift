@@ -72,18 +72,18 @@ struct CalendarView: View {
     @State private var currentPage: String = "calendar"
     @State private var showAddEvent = false
     @State private var events: [Event] = [
-        Event(activityImage: "protest",
-              activityTitle: "Roseville Green Summit 2023",
+        Event(activityImage: "wildfire",
+              activityTitle: "Wildfire Relief Fundraiser Event",
               activityDate: "OCT 15, 9AM - 5PM",
               activityDistance: "2.4 Miles",
-              activityDescription: "Unite for change at the Green Harmony Summit: where passion meets action for a sustainable tomorrow.",
+              activityDescription: "Engage in workshops, learn from fire experts, and donate to our fundraiser. Every contribution supports community education, wildfire initiatives, and aids affected families.",
               likes: 71,
               comments: 21),
-        Event(activityImage: "read",
-              activityTitle: "Rallying For Reading Rights @ Granite Bay High School",
-              activityDate: "OCT 17, 3PM - 5PM",
+        Event(activityImage: "inflation",
+              activityTitle: "Inflation 101: Empowering Our Community",
+              activityDate: "OCT 17, 3PM - 7PM",
               activityDistance: "3.1 Miles",
-              activityDescription: "Join us in opposing censorship and book bans. Prominent voices will deliver speeches, sharing their insights and experiences.",
+              activityDescription: "Join workshops & expert-led sessions tailored to help our community navigate inflation challenges. Your involvement strengthens community financial literacy, ensuring resilience in any economy!",
               likes: 41,
               comments: 11)
     ]
@@ -289,7 +289,7 @@ struct CalendarView: View {
                         .cornerRadius(10)
                     
                     Text(title)
-                        .font(.system(size: 21)).padding(.bottom, 2).padding(.top,6)
+                        .font(.system(size: 21)).fontWeight(.semibold).padding(.bottom, 2).padding(.top,6)
                     
                     HStack {
                         // Calendar and date

@@ -11,6 +11,7 @@ import SwiftUI
 struct CommunityProfileView: View {
     @State private var currentPage: String = "communityProfile"
     @State private var newsArticles: [NewsArticle] = []
+    @State private var showSignUp: Bool = true
     
     private func fetchNews() {
         let baseApiUrl = "https://content.guardianapis.com/"
@@ -303,7 +304,7 @@ struct CommunityProfileView: View {
             }
             .background(Color.white)
             .edgesIgnoringSafeArea(.all)
-        }.onAppear(perform: fetchNews)
+        }.onAppear(perform: fetchNews)        
     }
     
     struct CommunityProfileView_Previews: PreviewProvider {

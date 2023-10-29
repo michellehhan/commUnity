@@ -16,6 +16,8 @@
 		E0010FAD2AE3013800D390E9 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0010FAC2AE3013800D390E9 /* MessageView.swift */; };
 		E0010FB12AE3016E00D390E9 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0010FB02AE3016E00D390E9 /* NewsView.swift */; };
 		E0010FB32AE301A400D390E9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0010FB22AE301A400D390E9 /* ProfileView.swift */; };
+		E063D9082AEDF3CF00C85996 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063D9072AEDF3CF00C85996 /* WelcomeScreenView.swift */; };
+		E063D90A2AEDF3EC00C85996 /* SignInScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063D9092AEDF3EC00C85996 /* SignInScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		E0010FAC2AE3013800D390E9 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		E0010FB02AE3016E00D390E9 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E0010FB22AE301A400D390E9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E063D9072AEDF3CF00C85996 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
+		E063D9092AEDF3EC00C85996 /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				E0010FAC2AE3013800D390E9 /* MessageView.swift */,
 				E0010FB22AE301A400D390E9 /* ProfileView.swift */,
 				E0010FB02AE3016E00D390E9 /* NewsView.swift */,
+				E063D9072AEDF3CF00C85996 /* WelcomeScreenView.swift */,
+				E063D9092AEDF3EC00C85996 /* SignInScreenView.swift */,
 				E0010F972ADF967300D390E9 /* Assets.xcassets */,
 				E0010F992ADF967300D390E9 /* Preview Content */,
 			);
@@ -162,8 +168,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0010FAD2AE3013800D390E9 /* MessageView.swift in Sources */,
+				E063D9082AEDF3CF00C85996 /* WelcomeScreenView.swift in Sources */,
 				E0010F962ADF967200D390E9 /* ContentView.swift in Sources */,
 				E0010F942ADF967200D390E9 /* commUnityApp.swift in Sources */,
+				E063D90A2AEDF3EC00C85996 /* SignInScreenView.swift in Sources */,
 				E0010FB12AE3016E00D390E9 /* NewsView.swift in Sources */,
 				E0010FB32AE301A400D390E9 /* ProfileView.swift in Sources */,
 				E0010FAB2AE09D4800D390E9 /* CalendarView.swift in Sources */,
