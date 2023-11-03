@@ -4,5 +4,5 @@
 
 ## Demo
 
-- 🎥 [Demo Video](https://youtu.be/pH3K8aAg_eg?si=G7XKc77QUQCMV0ir)
-- 📱 [Live Demo](https://appetize.io/app/rqy3gx4mr5z25h2cjtyo5ok4ou?device=iphone14pro&osVersion=16.2)
+- 🎥 [Demo Video](https://youtu.be/GrhCOblZzQQ?si=XG_CrIQXqfsuQMtU)
+- 📱 [Live Demo](https://appetize.io/app/rqy3gx4mr5z25h2cjtyo5ok4ou?device=iphone14pro&osVersion=17.0)https://appetize.io/app/rqy3gx4mr5z25h2cjtyo5ok4ou?device=iphone14pro&osVersion=17.0)
