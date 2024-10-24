@@ -2,7 +2,7 @@
 //  CommunityProfileView.swift
 //  commUnity
 //
-//  Created by Michelle Han on 10/20/23.
+//  10/19/24
 //
 
 import Foundation

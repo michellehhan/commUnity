@@ -18,6 +18,8 @@
 		E0010FB32AE301A400D390E9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0010FB22AE301A400D390E9 /* ProfileView.swift */; };
 		E063D9082AEDF3CF00C85996 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063D9072AEDF3CF00C85996 /* WelcomeScreenView.swift */; };
 		E063D90A2AEDF3EC00C85996 /* SignInScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063D9092AEDF3EC00C85996 /* SignInScreenView.swift */; };
+		E09D25652B11FAE9009EFCA7 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = E09D25642B11FAE9009EFCA7 /* GoogleService-Info (1).plist */; };
+		E09D256C2B11FB8C009EFCA7 /* commUnity in Resources */ = {isa = PBXBuildFile; fileRef = E09D256B2B11FB8C009EFCA7 /* commUnity */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,20 @@
 		E0010FB22AE301A400D390E9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E063D9072AEDF3CF00C85996 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		E063D9092AEDF3EC00C85996 /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
+		E09D25642B11FAE9009EFCA7 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info (1).plist"; path = "../../../Downloads/GoogleService-Info (1).plist"; sourceTree = "<group>"; };
+		E09D25682B11FB67009EFCA7 /* commUnity.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = commUnity.xcodeproj; sourceTree = "<group>"; };
+		E09D256B2B11FB8C009EFCA7 /* commUnity */ = {isa = PBXFileReference; lastKnownFileType = folder; name = commUnity; path = "../../commUnity 2/commUnity"; sourceTree = "<group>"; };
+		E09D256E2B11FB9A009EFCA7 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
+		E09D256F2B11FB9A009EFCA7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E09D25702B11FB9A009EFCA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E09D25722B11FB9A009EFCA7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E09D25732B11FB9A009EFCA7 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		E09D25742B11FB9A009EFCA7 /* SignInScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreenView.swift; sourceTree = "<group>"; };
+		E09D25752B11FB9A009EFCA7 /* commUnityApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commUnityApp.swift; sourceTree = "<group>"; };
+		E09D25772B11FB9A009EFCA7 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		E09D25782B11FB9A009EFCA7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E09D25792B11FB9A009EFCA7 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		E09D257A2B11FB9A009EFCA7 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +65,9 @@
 		E0010F872ADF967200D390E9 = {
 			isa = PBXGroup;
 			children = (
+				E09D25682B11FB67009EFCA7 /* commUnity.xcodeproj */,
 				E0010F922ADF967200D390E9 /* commUnity */,
+				E09D256D2B11FB9A009EFCA7 /* commUnity */,
 				E0010F912ADF967200D390E9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +83,7 @@
 		E0010F922ADF967200D390E9 /* commUnity */ = {
 			isa = PBXGroup;
 			children = (
+				E09D256B2B11FB8C009EFCA7 /* commUnity */,
 				E0010FA72ADFA0C600D390E9 /* Font */,
 				E0010F932ADF967200D390E9 /* commUnityApp.swift */,
 				E0010F952ADF967200D390E9 /* ContentView.swift */,
@@ -74,6 +93,7 @@
 				E0010FB02AE3016E00D390E9 /* NewsView.swift */,
 				E063D9072AEDF3CF00C85996 /* WelcomeScreenView.swift */,
 				E063D9092AEDF3EC00C85996 /* SignInScreenView.swift */,
+				E09D25642B11FAE9009EFCA7 /* GoogleService-Info (1).plist */,
 				E0010F972ADF967300D390E9 /* Assets.xcassets */,
 				E0010F992ADF967300D390E9 /* Preview Content */,
 			);
@@ -92,6 +112,45 @@
 			isa = PBXGroup;
 			children = (
 				E0010FA82ADFA0F300D390E9 /* Poppins-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		E09D25692B11FB67009EFCA7 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E09D256D2B11FB9A009EFCA7 /* commUnity */ = {
+			isa = PBXGroup;
+			children = (
+				E09D256E2B11FB9A009EFCA7 /* WelcomeScreenView.swift */,
+				E09D256F2B11FB9A009EFCA7 /* ProfileView.swift */,
+				E09D25702B11FB9A009EFCA7 /* Assets.xcassets */,
+				E09D25712B11FB9A009EFCA7 /* Preview Content */,
+				E09D25732B11FB9A009EFCA7 /* NewsView.swift */,
+				E09D25742B11FB9A009EFCA7 /* SignInScreenView.swift */,
+				E09D25752B11FB9A009EFCA7 /* commUnityApp.swift */,
+				E09D25762B11FB9A009EFCA7 /* Font */,
+				E09D25782B11FB9A009EFCA7 /* ContentView.swift */,
+				E09D25792B11FB9A009EFCA7 /* CalendarView.swift */,
+				E09D257A2B11FB9A009EFCA7 /* MessageView.swift */,
+			);
+			path = commUnity;
+			sourceTree = "<group>";
+		};
+		E09D25712B11FB9A009EFCA7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E09D25722B11FB9A009EFCA7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E09D25762B11FB9A009EFCA7 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				E09D25772B11FB9A009EFCA7 /* Poppins-Regular.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -124,7 +183,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					E0010F8F2ADF967200D390E9 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -142,6 +201,12 @@
 			mainGroup = E0010F872ADF967200D390E9;
 			productRefGroup = E0010F912ADF967200D390E9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E09D25692B11FB67009EFCA7 /* Products */;
+					ProjectRef = E09D25682B11FB67009EFCA7 /* commUnity.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E0010F8F2ADF967200D390E9 /* commUnity */,
@@ -156,7 +221,9 @@
 			files = (
 				E0010F9B2ADF967300D390E9 /* Preview Assets.xcassets in Resources */,
 				E0010F982ADF967300D390E9 /* Assets.xcassets in Resources */,
+				E09D256C2B11FB8C009EFCA7 /* commUnity in Resources */,
 				E0010FA92ADFA0F300D390E9 /* Poppins-Regular.ttf in Resources */,
+				E09D25652B11FAE9009EFCA7 /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +284,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -277,6 +345,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
